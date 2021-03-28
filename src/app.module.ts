@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { UserEntity } from './user/user.entity';
 
 dotenv.config();
 
@@ -16,9 +18,10 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [UserEntity],
       synchronize: true,
-    })
+    }),
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],

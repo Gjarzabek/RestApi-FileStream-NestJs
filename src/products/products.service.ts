@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { INSTANCE_ID_SYMBOL } from "@nestjs/core/injector/instance-wrapper";
 
 import {Product} from "./product.model";
 
