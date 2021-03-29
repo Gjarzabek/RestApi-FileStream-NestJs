@@ -1,33 +1,39 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-
-import {Product} from "./product.model";
+import { ImATeapotException, Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ProductEntity } from './products.entity'
 
 @Injectable()
 export class ProductsService {
-    private products: Product[] = [];
+    constructor(@InjectRepository(ProductEntity) private readonly productRepo: Repository<ProductEntity>) {}
 
-    private findProduct(id: string): [Product, number] {
-        const productIndex = this.products.findIndex(prod=>prod.id === id);
-        const product = this.products[productIndex];
+    private async findProduct(id: string): Promise<ProductEntity> {
+        const product: ProductEntity = await this.productRepo.findOne(id);
         if (!product) {
             throw new NotFoundException('Wrong product Id');
         }
-        return [product, productIndex];
+        return product;
     }
 
-    insertProcut(title: string, desc: string, price: number) {
-        const prodId = Math.random().toString().substring(2, 8);
-        const newProduct = new Product(prodId, title, desc, price);
-        this.products.push(newProduct);
-        return prodId;
+    async insertProduct(title: string, desc: string, price: number) {
+        const insertResult = await this.productRepo.insert({
+            title: title,
+            description: desc,
+            price: price
+        });
+
+        if (!insertResult || !insertResult.identifiers) {
+            throw new ImATeapotException();
+        }
+        return insertResult.identifiers[0];
     }
 
-    getSingleProduct(productId: string) {
-        return {...this.findProduct(productId)[0]};
+    async getSingleProduct(productId: string) {
+        return await this.findProduct(productId);
     }
 
-    updateProduct(productId: string, title: string, desc: string, price: number) {
-        const [product, index] = this.findProduct(productId);
+    async updateProduct(productId: string, title: string, desc: string, price: number) {
+        const product = await this.findProduct(productId);
         const updatedProduct = {...product};
         if (title) {
             updatedProduct.title = title;
@@ -38,6 +44,9 @@ export class ProductsService {
         if (price) {
             updatedProduct.price = price;
         }
-        this.products[index] = updatedProduct;
+        const updateResult = await this.productRepo.update(product.id, updatedProduct);
+        
+        if (!updateResult || updateResult.affected < 1)
+            throw new NotFoundException('Wrong product Id');
     }
 }

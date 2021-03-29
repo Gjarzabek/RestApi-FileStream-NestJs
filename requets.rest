@@ -1,0 +1,43 @@
+POST http://localhost:3000/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "dada",
+    "firstname": "Grzesiek",
+    "lastname": "Jarząbek",
+    "password": "dada"
+}
+###
+POST http://localhost:3000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "dada",
+    "password": "dada"
+}
+
+###
+GET http://localhost:3000/user HTTP/1.1
+###
+GET http://localhost:3000/product/1 HTTP/1.1
+###
+
+PATCH  http://localhost:3000/product/1 HTTP/1.1
+content-type: application/json
+
+{
+    //"title": "xx",
+    //"description": "xx",
+    //"price": 5000
+}
+###
+
+POST http://localhost:3000/product HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRhZGEiLCJpZCI6MSwiaWF0IjoxNjE3MDI2Mjk0LCJleHAiOjE2MTcwMjY4OTR9.pN8Jlx_d_1qDzVNBEox9wDR2KZfuN3N0KmX6qqQxcsI
+
+{
+    "title": "gitara",
+    "description": "rarara",
+    "price": 250
+}
