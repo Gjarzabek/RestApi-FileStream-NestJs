@@ -27,13 +27,14 @@
 Demo [Nest](https://github.com/nestjs/nest) app build as a recruitment task.
 
 EndPoints:
-POST /auth/register - JSON payload with fields: [username, firstname, lastname, password]
-POST /auth/login - JSON payload with fields: [username, password]
-GET /product/:id
-POST /product/:id - JSON payload with fields: [title, description, price] + header: Authorization Bearer access token
-PATCH /product/:id - JSON payload with fields: [title, description, price]
 
-POST /upload - use with client.js file
+<p>POST /auth/register - JSON payload with fields: [username, firstname, lastname, password]</p>
+<p>POST /auth/login - JSON payload with fields: [username, password]</p>
+<p>GET /product/:id</p>
+<p>POST /product/:id - JSON payload with fields: [title, description, price] + header: Authorization Bearer access token</p>
+<p>PATCH /product/:id - JSON payload with fields: [title, description, price]</p>
+
+<p>POST /upload - use with client.js file</p>
 
 Things that can be improved with little more time investment:
 - Stricter login policy
@@ -61,7 +62,7 @@ $ CREATE DATABASE epc WITH OWNER epc;
 Rest Api test with VisualStudioCode:
 
 Install REST Client package.
-Make example requests with client.rest file
+<b>Make example requests with client.rest file</b>
 
 CSV file filter test:
 
