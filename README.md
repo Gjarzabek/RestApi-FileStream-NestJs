@@ -34,8 +34,9 @@ EndPoints:
 <p>POST /product/:id - JSON payload with fields: [title, description, price] + header: Authorization Bearer access token</p>
 <p>PATCH /product/:id - JSON payload with fields: [title, description, price]</p>
 
-<p>POST /upload - use with client.js file</p>
+<p>POST /upload - use with client.js file. I assume correct format of csv file and that 'email' is a last column</p>
 
+.env file was added to the repo for simpler tests.
 Things that can be improved with little more time investment:
 - Stricter login policy
 - Add refresh token
@@ -61,7 +62,7 @@ $ CREATE DATABASE epc WITH OWNER epc;
 
 Rest Api test with VisualStudioCode:
 
-Install REST Client package.
+<p>Install REST Client package.</p>
 <b>Make example requests with client.rest file</b>
 
 CSV file filter test:
