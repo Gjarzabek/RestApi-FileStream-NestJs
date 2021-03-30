@@ -17,22 +17,22 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3000/product/7 HTTP/1.1
+GET http://localhost:3000/product/1 HTTP/1.1
 ###
 
 PATCH  http://localhost:3000/product/1 HTTP/1.1
 content-type: application/json
 
 {
-    "title": "xx",
-    "description": "xx",
+    "title": "changedTitle",
+    "description": "newDesc",
     "price": 5000
 }
 ###
 
 POST http://localhost:3000/product HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhZGEiLCJpZCI6NywiaWF0IjoxNjE3MDcyNzU4LCJleHAiOjE2MTcwNzMzNTh9.jEDvNrWqNVEEabBYCFlD5kh7gUdCoNQYjA9qeQHQB7E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhZGEiLCJpZCI6NywiaWF0IjoxNjE3MDkxOTY2LCJleHAiOjE2MTcwOTI1NjZ9.X8T8cQY01SonGvV9qA53LiXpdKAQSHofLkhAyY3W-ms
 
 {
     "title": "gitara",

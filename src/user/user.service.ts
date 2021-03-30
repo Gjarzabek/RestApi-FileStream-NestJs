@@ -9,10 +9,6 @@ export class UserService {
 
     constructor(@InjectRepository(UserEntity) private readonly userRepo: Repository<UserEntity>) {}
 
-    async findAll() {
-        return await this.userRepo.find();
-    }
-
     async findOne(username: string): Promise<any | undefined> {
         const user: UserEntity = await this.userRepo.findOne({username: username})
         return user;

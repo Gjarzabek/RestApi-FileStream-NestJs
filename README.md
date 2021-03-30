@@ -24,16 +24,53 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Demo [Nest](https://github.com/nestjs/nest) app build as a recruitment task.
+
+EndPoints:
+POST /auth/register - JSON payload with fields: [username, firstname, lastname, password]
+POST /auth/login - JSON payload with fields: [username, password]
+GET /product/:id
+POST /product/:id - JSON payload with fields: [title, description, price] + header: Authorization Bearer access token
+PATCH /product/:id - JSON payload with fields: [title, description, price]
+
+POST /upload - use with client.js file
+
+Things that can be improved with little more time investment:
+- Stricter login policy
+- Add refresh token
+- Simple html client
+
 
 ## Installation
 
 ```bash
 $ npm install
 ```
+## Database setup
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install postgresql
+$ sudo -i -u postgres psql
+$ CREATE USER epc WITH PASSWORD 'password';
+$ CREATE DATABASE epc WITH OWNER epc;
+```
 
 ## Running the app
 
+Rest Api test with VisualStudioCode:
+
+Install REST Client package.
+Make example requests with client.rest file
+
+CSV file filter test:
+
+```bash
+# before running this client run server side first
+$ node client.js <CSV-file-path>
+```
+
+Server side:
 ```bash
 # development
 $ npm run start
@@ -44,29 +81,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
