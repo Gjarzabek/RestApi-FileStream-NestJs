@@ -6,10 +6,11 @@ var request = require('request');
 var fs = require('fs');
 var r = request.post("http://localhost:3000/upload");
 
-const Inputfilename = process.argv[2];
+const UPLOAD_PATH = process.argv[2];
+const DOWNLOAD_PATH = UPLOAD_PATH.substring(0, UPLOAD_PATH.length-4) + "-filtered.csv";
 
-var upload = fs.createReadStream(Inputfilename, { highWaterMark: 500 });
-var download = fs.createWriteStream(`Filtered-${Inputfilename}`);
+var upload = fs.createReadStream(UPLOAD_PATH, { highWaterMark: 500 });
+var download = fs.createWriteStream(DOWNLOAD_PATH);
 
 r.on('data',(chunk) => {
     download.write(chunk);
